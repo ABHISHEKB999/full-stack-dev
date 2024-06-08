@@ -36,7 +36,6 @@ This is a simple task management application that allows users to create, update
 
 1. Clone the repository:
 
-```bash
 git clone https://github.com/your-username/task-management-app.git
 cd task-management-app
 
@@ -119,6 +118,10 @@ This project is licensed under the MIT License.
 
 
 This `README.md` file provides an overview of the project, installation and setup instructions, project structure, and testing details. It should help others understand the project and get started with it quickly. Make sure to replace `your-username` and other placeholders with your actual information.
+
+
+
+
 
 
 
