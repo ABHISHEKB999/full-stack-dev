@@ -3,11 +3,12 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import SignIn from './views/SignIn';
 import SignOut from './views/SignOut';
+import SignUp from './views/SignUp';
 import TaskManager from './views/TaskManager';
 
 const PrivateRoute = ({ element: Component, ...rest }) => {
   const { currentUser } = useAuth();
-  return currentUser ? <TaskManager {...rest} /> : <Navigate to="/signin" />;
+  return currentUser ? <Component {...rest} /> : <Navigate to="/signin" />;
 };
 
 const App = () => (
@@ -17,6 +18,7 @@ const App = () => (
         <Routes>
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signout" element={<SignOut />} />
+          <Route path="/signup" element={<SignUp />} /> 
           <Route path="/" element={<PrivateRoute element={TaskManager} />} />
         </Routes>
       </div>

@@ -1,5 +1,15 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
+const dotenv = require('dotenv');
+
+// Load environment variables from .env file
+const env = dotenv.config().parsed;
+
+// Pass environment variables to DefinePlugin
+const definePlugin = new webpack.DefinePlugin({
+  'process.env': JSON.stringify(env)
+});
 
 module.exports = {
   entry: './src/index.js',
@@ -31,6 +41,7 @@ module.exports = {
       template: './public/index.html',
       filename: 'index.html',
     }),
+    definePlugin // Include DefinePlugin
   ],
   devServer: {
     static: {
