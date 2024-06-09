@@ -1,10 +1,14 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from 'react-router-dom';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
-import SignIn from './views/SignIn';
-import SignOut from './views/SignOut';
-import SignUp from './views/SignUp';
-import TaskManager from './views/TaskManager';
+import ThemeProvider from './providers/ThemeProvider';
+import { SignIn, SignUp, TaskManager } from './views';
 
 const PrivateRoute = ({ element: Component, ...rest }) => {
   const { currentUser } = useAuth();
@@ -13,17 +17,22 @@ const PrivateRoute = ({ element: Component, ...rest }) => {
 
 const App = () => (
   <AuthProvider>
-    <Router>
-      <div className="container mx-auto p-4">
-        <Routes>
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/signout" element={<SignOut />} />
-          <Route path="/signup" element={<SignUp />} /> 
-          <Route path="/" element={<PrivateRoute element={TaskManager} />} />
-        </Routes>
-      </div>
-    </Router>
+    <ThemeProvider>
+      <Router>
+        <div className="container mx-auto p-4">
+          <Routes>
+            <Route path="/signin" element={<SignIn />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/" element={<PrivateRoute element={TaskManager} />} />
+          </Routes>
+        </div>
+      </Router>
+    </ThemeProvider>
   </AuthProvider>
 );
+
+PrivateRoute.propTypes = {
+  element: PropTypes.element.isRequired,
+};
 
 export default App;

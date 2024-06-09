@@ -1,26 +1,34 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import TaskFilter from '../components/TaskFilter';
+import { TaskFilter } from '../views';
 
-jest.mock('firebase/firestore');
+describe('TaskFilter Component', () => {
+  test('renders TaskFilter component', () => {
+    render(<TaskFilter />);
 
-test('renders TaskFilter and handles changes', () => {
-  const setFilterStatus = jest.fn();
-  const setSearchTerm = jest.fn();
-  const setSortBy = jest.fn();
+    expect(screen.getByLabelText(/filter/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/search/i)).toBeInTheDocument();
+  });
 
-  render(<TaskFilter filterStatus="All" setFilterStatus={setFilterStatus} searchTerm="" setSearchTerm={setSearchTerm} sortBy="None" setSortBy={setSortBy} />);
+  test('handles filter changes', () => {
+    const mockOnFilterChange = jest.fn();
+    render(<TaskFilter onFilterChange={mockOnFilterChange} />);
 
-  const filterSelect = screen.getByLabelText(/filter by status/i);
-  const searchInput = screen.getByLabelText(/search tasks/i);
-  const sortSelect = screen.getByLabelText(/sort by/i);
+    fireEvent.change(screen.getByLabelText(/filter/i), {
+      target: { value: 'completed' },
+    });
 
-  fireEvent.change(filterSelect, { target: { value: 'In Progress' } });
-  expect(setFilterStatus).toHaveBeenCalledWith('In Progress');
+    expect(mockOnFilterChange).toHaveBeenCalledWith('completed');
+  });
 
-  fireEvent.change(searchInput, { target: { value: 'Task' } });
-  expect(setSearchTerm).toHaveBeenCalledWith('Task');
+  test('handles search input changes', () => {
+    const mockOnSearchChange = jest.fn();
+    render(<TaskFilter onSearchChange={mockOnSearchChange} />);
 
-  fireEvent.change(sortSelect, { target: { value: 'Title' } });
-  expect(setSortBy).toHaveBeenCalledWith('Title');
+    fireEvent.change(screen.getByLabelText(/search/i), {
+      target: { value: 'task' },
+    });
+
+    expect(mockOnSearchChange).toHaveBeenCalledWith('task');
+  });
 });
