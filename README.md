@@ -127,6 +127,15 @@ This project is licensed under the MIT License.
 
 This `README.md` file provides an overview of the project, installation and setup instructions, project structure, and testing details. It should help others understand the project and get started with it quickly. Make sure to replace `your-username` and other placeholders with your actual information.
 
+## Light Mode Illustration
+![image](https://github.com/ABHISHEKB999/full-stack-dev/assets/166899346/043e9ea7-6776-4673-888c-9f6ee6e55081)
+
+
+
+## Dark Mode Illustration 
+![image](https://github.com/ABHISHEKB999/full-stack-dev/assets/166899346/bfcd6c13-cb59-4868-a0a9-cd242656a6b2)
+
+
 
 
 
