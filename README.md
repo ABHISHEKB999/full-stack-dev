@@ -59,23 +59,31 @@ REACT_APP_FIREBASE_APP_ID=your-app-id
 - npm test
 
 # Project Structure
-/src
-  /components
-    TaskForm.js
-    Task.js
-    TaskList.js
-    TaskFilter.js
-  /__mocks__
-    firebase.js
-  /tests
-    TaskForm.test.js
-    Task.test.js
-    TaskList.test.js
-    TaskFilter.test.js
-    UserProfile.test.js
-  index.js
-  App.js
-  jest.setup.js
+
+- **`/src`**: This is the main source directory for the application.
+  - **`/views`**: This directory contains view components that represent different pages or sections of the application.
+    - **`TaskManager/`**: A directory for the TaskManager view.
+      - `TaskManager.js`: The main component for the TaskManager view.
+      - **`/components`**: This directory contains the reusable React components used in the application.
+        - `TaskForm.js`: A component for creating and updating tasks.
+        - `Task.js`: A component for displaying individual task details with options to update or delete.
+        - `TaskList.js`: A component for displaying a list of tasks.
+        - `TaskFilter.js`: A component for filtering tasks by status, search term, and sort criteria.
+        - `SignOut.js`: A component for rendering a button that allows users to sign out of the application.
+     - **`SignIn/`**: A directory for the SignIn view.
+     - **`SignUp/`**: A directory for the SignUp view.
+  - **`/__mocks__`**: This directory contains mock implementations for external dependencies.
+    - `firebase.js`: A mock implementation for Firebase services, used for testing purposes.
+  - **`/tests`**: This directory contains test files for the components.
+    - `TaskForm.test.js`: Test file for the `TaskForm` component.
+    - `Task.test.js`: Test file for the `Task` component.
+    - `TaskList.test.js`: Test file for the `TaskList` component.
+    - `TaskFilter.test.js`: Test file for the `TaskFilter` component.
+    - `SignOut.test.js`: Test file for the `SignOut` component.
+  - `index.js`: The entry point of the application.
+  - `App.js`: The main component that serves as the root of the application.
+  - `jest.setup.js`: Configuration file for the Jest testing framework.
+
 
   # Components
 TaskForm: Form for creating and updating tasks.
